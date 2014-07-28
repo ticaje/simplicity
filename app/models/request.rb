@@ -3,5 +3,6 @@ class Request < ActiveRecord::Base
 
   belongs_to :article
   belongs_to :requestype
-  has_many   :users, through: :user_request
+  has_many   :user_requests, dependent: :destroy
+  has_many   :users, through: :user_requests
 end
