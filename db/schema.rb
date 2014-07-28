@@ -11,9 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140728091104) do
+ActiveRecord::Schema.define(:version => 20140728103622) do
 
   create_table "articles", :force => true do |t|
+    t.string   "name"
     t.string   "link"
     t.text     "content"
     t.integer  "category_id"
@@ -29,38 +30,27 @@ ActiveRecord::Schema.define(:version => 20140728091104) do
   end
 
   create_table "ratings", :force => true do |t|
-    t.string   "rating"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "request_types", :force => true do |t|
-    t.string   "type"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "requests", :force => true do |t|
     t.integer  "article_id"
-    t.integer  "user_id"
-    t.integer  "requesttype_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "requestype_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  create_table "translation_ratings", :force => true do |t|
-    t.integer  "translation_id"
-    t.integer  "user_id"
-    t.integer  "rating_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+  create_table "requestypes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "translations", :force => true do |t|
-    t.integer  "article_id"
+  create_table "user_requests", :force => true do |t|
     t.integer  "user_id"
-    t.string   "link"
-    t.text     "content"
+    t.integer  "request_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -73,6 +63,14 @@ ActiveRecord::Schema.define(:version => 20140728091104) do
     t.boolean  "active"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "translation_id"
+    t.integer  "rating_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
 end
