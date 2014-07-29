@@ -16,7 +16,7 @@ describe User do
     @user.should be_valid
   end
 
-  describe "associations" do
+  describe "Associations" do
     it { should have_many(:translations) }
     it { should have_many(:votes) }
     it { should have_many(:user_requests) }
@@ -24,18 +24,11 @@ describe User do
   end
 
   describe "Empty fields" do
-    it "is invalid without a username" do
-      @user.username = nil
-      @user.should_not be_valid
-    end
-
-    it "it is invalid without an email" do
-      @user.email = nil
-      @user.should_not be_valid
-    end
+    it { @user.should validate_presence_of(:username) }
+    it { @user.should validate_presence_of(:email) }
   end
 
-  describe "when email format is invalid" do
+  describe "When email format is invalid" do
     it "has an invalid email format" do
       addresses = %w[user@foo, com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
       addresses.each do |invalid_address|
@@ -45,7 +38,7 @@ describe User do
     end
   end
 
-  describe "when username is longer than 50 characters" do
+  describe "When username is longer than 50 characters" do
     it "username is restricted to 50 characters" do
       @user.username = "a" * 51
       @user.should_not be_valid
