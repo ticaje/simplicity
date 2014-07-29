@@ -6,5 +6,6 @@ FactoryGirl.define do
     f.link "http://mylink.me"
     f.content { Faker::Lorem.sentence(100) }
     f.state false
+    category
   end
 end
