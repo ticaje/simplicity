@@ -8,6 +8,8 @@ gem 'rails', '3.2.19'
 gem 'sqlite3'
 gem 'ancestry'
 
+gem 'devise', '>= 2.1.2'
+gem 'devise_invitable', '>= 1.0.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
