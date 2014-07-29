@@ -22,11 +22,6 @@ describe User do
       @user.should_not be_valid
     end
 
-    it "is invalid without a password" do
-      @user.crypted_password = nil
-      @user.should_not be_valid
-    end
-
     it "it is invalid without an email" do
       @user.email = nil
       @user.should_not be_valid
