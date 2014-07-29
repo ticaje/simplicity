@@ -16,6 +16,13 @@ describe User do
     @user.should be_valid
   end
 
+  describe "associations" do
+    it { should have_many(:translations) }
+    it { should have_many(:votes) }
+    it { should have_many(:user_requests) }
+    it { should have_many(:requests) }
+  end
+
   describe "Empty fields" do
     it "is invalid without a username" do
       @user.username = nil
