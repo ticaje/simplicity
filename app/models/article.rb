@@ -4,4 +4,7 @@ class Article < ActiveRecord::Base
   belongs_to :category
   has_many   :translations, dependent: :destroy
   has_many   :requests, dependent: :destroy
+
+  validates :name, :uniqueness => true, :presence => true
+  validates_presence_of :content
 end
