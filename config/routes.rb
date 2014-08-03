@@ -1,6 +1,7 @@
 Simplicity::Application.routes.draw do
   devise_for :users
 
+  resources :articles
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
