@@ -6,5 +6,5 @@ class Article < ActiveRecord::Base
   has_many   :requests, dependent: :destroy
 
   validates :name, :uniqueness => true, :presence => true
-  validates_presence_of :content
+  validates_presence_of :content, :category
 end
