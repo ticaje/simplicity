@@ -37,31 +37,34 @@ class ArticlesController < ApplicationController
       render_with(@article, 201)
     else
       # Render status code: Unprocessable entity
-      render_with(@article.errors, 422, 'Could not create article')
+      render_with(@article.errors, 422, 'Could not create ')
     end
   end
 
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @article = Article.find(params[:id])
+    @article = Article.find_by_id(params[:id])
 
-    if @article.update_attributes(params[:article])
+    if @article && @article.update_attributes(params[:article])
       # Render status code: ok
       render_with(@article, 200)
     else
       # Render status code: Unprocessable entity
-      render_with(@article.errors, 422)
+      render_with(@article, 422)
     end
   end
 
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
-
-    head :no_content
+    @article = Article.find_by_id(params[:id])
+    if @article
+      @article.destroy
+      render_with(nil, 200, "Deleted!!!")
+    else
+      render_with(nil, 404, "Record not found")
+    end
   end
 
   private
