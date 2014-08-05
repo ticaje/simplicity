@@ -10,9 +10,9 @@ describe ArticlesController do
 
   describe "GET #index" do
     it "populates an array with all articles" do
-      articles = create_list(:article, 5)
+      create_list(:article, 5)
       get :index
-      assigns(:articles).should eq(articles)
+      assigns(:articles).count.should eq(Article.count)
     end
   end
 
