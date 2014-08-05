@@ -28,16 +28,6 @@ describe User do
     it { @user.should validate_presence_of(:email) }
   end
 
-  describe "When email format is invalid" do
-    it "has an invalid email format" do
-      addresses = %w[user@foo, com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
-      addresses.each do |invalid_address|
-        @user.email = invalid_address
-        @user.should_not be_valid
-      end
-    end
-  end
-
   describe "When username is longer than 50 characters" do
     it "username is restricted to 50 characters" do
       @user.username = "a" * 51
