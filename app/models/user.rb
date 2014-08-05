@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   has_many :requests, through: :user_requests
   has_many :votes, dependent: :destroy
 
-  valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: valid_email_regex }, uniqueness: { case_sensitive: false }
   validates :username, length: { maximum: 50 }, :presence => true
+  validates_uniqueness_of :username
 end
