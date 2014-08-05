@@ -5,5 +5,5 @@ class Translation < ActiveRecord::Base
   belongs_to :user
   has_many   :votes, dependent: :destroy
 
-  validates_presence_of :content
+  validates_presence_of :content, :article, :user
 end

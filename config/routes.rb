@@ -2,6 +2,7 @@ Simplicity::Application.routes.draw do
   devise_for :users, :path => :account,:path_names => { :sign_up => "register", :sign_in => "login" }, :controllers => { :registrations => "registrations" }
 
   resources :articles
+  resources :translations
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

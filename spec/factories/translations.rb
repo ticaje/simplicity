@@ -4,7 +4,10 @@ FactoryGirl.define do
   factory :translation do |f|
     f.link "http://trans-mylink.me"
     f.content { Faker::Lorem.sentence(100) }
-    article
-    user
+    f.association :article
+    f.association :user
+  end
+  factory :invalid_translation, parent: :translation do |f|
+    f.content nil
   end
 end
