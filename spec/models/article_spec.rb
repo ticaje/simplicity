@@ -24,7 +24,7 @@ describe Article do
     context "Presence" do
       it { @article.should validate_presence_of(:name) }
       it { @article.should validate_presence_of(:content) }
-      it { @article.should validate_presence_of(:category) }
+      it { @article.should validate_presence_of(:category_id) }
     end
   end
 end

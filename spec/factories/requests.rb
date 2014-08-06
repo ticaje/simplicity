@@ -1,8 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :request do |f|
+  factory :request do
     article
-    requestype
+    user
   end
 end

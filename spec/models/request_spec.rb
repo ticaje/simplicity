@@ -13,7 +13,6 @@ describe Request do
 
   describe "Associations" do
     it { should belong_to(:article) }
-    it { should belong_to(:requestype) }
-    it { should have_many(:user_requests) }
+    it { should belong_to(:user) }
   end
 end

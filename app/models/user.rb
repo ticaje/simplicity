@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :active
 
   has_many :translations, dependent: :destroy
-  has_many :user_requests, dependent: :destroy
-  has_many :requests, through: :user_requests
+  has_many :requests, dependent: :destroy
+  has_many :petitions, class_name: "Article", through: :requests
+  has_many :articles, dependent: :destroy, foreign_key: :author_id
   has_many :votes, dependent: :destroy
 
   validates :username, length: { maximum: 50 }, :presence => true

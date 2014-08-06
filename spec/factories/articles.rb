@@ -12,6 +12,6 @@ FactoryGirl.define do
     f.name nil
   end
   factory :article_with_non_existing_category, parent: :article do |f|
-    f.category_id -1
+    f.category_id nil
   end
 end
