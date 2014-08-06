@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140729103307) do
+ActiveRecord::Schema.define(:version => 20140806130607) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(:version => 20140729103307) do
     t.boolean  "state"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "author_id"
   end
+
+  add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -40,29 +43,19 @@ ActiveRecord::Schema.define(:version => 20140729103307) do
 
   create_table "requests", :force => true do |t|
     t.integer  "article_id"
-    t.integer  "requestype_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "requestypes", :force => true do |t|
-    t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "requests", ["article_id"], :name => "index_requests_on_article_id"
+  add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
 
   create_table "translations", :force => true do |t|
     t.string   "link"
     t.text     "content"
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "user_requests", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "request_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
