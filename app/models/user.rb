@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :translations, dependent: :destroy
   has_many :requests, dependent: :destroy
-  has_many :petitions, class_name: "Article", through: :requests
+  has_many :petitions, source: :article, through: :requests
   has_many :articles, dependent: :destroy, foreign_key: :author_id
   has_many :votes, dependent: :destroy
 
