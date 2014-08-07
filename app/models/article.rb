@@ -9,4 +9,8 @@ class Article < ActiveRecord::Base
 
   validates :name, :uniqueness => true, :presence => true
   validates_presence_of :content, :category_id
+
+  def already_requested(user)
+    self.requesters.find_by_id(user)
+  end
 end

@@ -1,5 +1,7 @@
 Simplicity::Application.routes.draw do
-  devise_for :users, :path => :account,:path_names => { :sign_up => "register", :sign_in => "login" }, :controllers => { :registrations => "registrations" }
+
+  match 'account/ask' => 'users#ask', :as => :ask
+  devise_for :users, :path => :account, :path_names => { :sign_up => "register", :sign_in => "login" }, :controllers => { :registrations => "registrations" }
 
   resources :articles
   resources :translations
