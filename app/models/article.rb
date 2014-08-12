@@ -17,6 +17,10 @@ class Article < ActiveRecord::Base
   end
 
   def already_voted_by?(user)
-     self.evaluators_for(:points).find{ |s| s == user } != nil
+    self.evaluators_for(:points).find{ |s| s == user } != nil
+  end
+
+  def total_requests
+    self.requests.count
   end
 end
