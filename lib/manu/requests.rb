@@ -22,7 +22,7 @@ module Manu
       private
       def assign(article, user)
         article = Article.find(article)
-        if !article.already_requested(user)
+        if !article.already_requested?(user)
           article.requesters << User.find(user)
           "Request done satisfactory"
         else
