@@ -1,0 +1,10 @@
+<h1>Translations</h1>
+
+<div id="translations">
+  <% @translations.each do |translation| %>
+    <h2><%= link_to translation.article.name, translation %></h2>
+    <h3>Author: <%= translation.article.author.username %></h3>
+    <h3>Translator: <%= translation.user.email %></h3>
+    <%= simple_format translation.content %>
+  <% end %>
+</div>
