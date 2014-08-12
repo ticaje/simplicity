@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
-  respond_to :json
+  before_filter :authenticate_user!
 
   def ask
-    u_id = params[:petition][:user_id]
-    a_id = params[:petition][:article_id]
-    response = Manu::Requests::Assignment.new.request_translation(u_id, a_id)
-    render_with(response)
+    response = Manu::Requests::Assignment.new.request_translation(current_user, params[:article])
+    redirect_to root_path(), notice: response
+  end
+
+  def translate
+    @translation = current_user.translations.new
+    @article = Article.find(params[:article])
+    render "translations/new"
   end
 
 end
