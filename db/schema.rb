@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140808142519) do
+ActiveRecord::Schema.define(:version => 20140813102456) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20140808142519) do
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -50,6 +57,12 @@ ActiveRecord::Schema.define(:version => 20140808142519) do
 
   add_index "requests", ["article_id"], :name => "index_requests_on_article_id"
   add_index "requests", ["user_id"], :name => "index_requests_on_user_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "rs_evaluations", :force => true do |t|
     t.string   "reputation_name"
@@ -131,5 +144,8 @@ ActiveRecord::Schema.define(:version => 20140808142519) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "votes", ["translation_id"], :name => "index_votes_on_translation_id"
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end
