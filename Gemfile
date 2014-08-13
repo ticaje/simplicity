@@ -12,7 +12,7 @@ gem 'devise', '>= 2.1.2'
 gem 'devise_invitable', '>= 1.0.3'
 
 gem 'activerecord-reputation-system', require: 'reputation_system'
-
+gem 'declarative_authorization'
 
 # Gems used only for assets and not required
 # in production environments by default.
