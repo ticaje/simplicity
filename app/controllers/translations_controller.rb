@@ -1,11 +1,14 @@
 class TranslationsController < ApplicationController
-  before_filter :authenticate_user!
+  filter_resource_access
 
   # GET /translations
   # GET /translations.json
   def index
-    @user = current_user
-    @translations = @user.translations
+    if current_user
+      @translations = current_user.translations
+    else
+      @translations = Translation.all
+    end
   end
 
   # GET /translations/1

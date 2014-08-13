@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  filter_resource_access
 
   # GET /articles
   # GET /articles.json
@@ -7,20 +7,8 @@ class ArticlesController < ApplicationController
     @articles = Article.top_requested
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
-  def show
-    @article = Article.find(params[:id])
-  end
-
   def edit
     @article = Article.find(params[:id])
-  end
-
-  # GET /articles/new
-  # GET /articles/new.json
-  def new
-    @article = Article.new
   end
 
   # POST /articles
@@ -30,7 +18,7 @@ class ArticlesController < ApplicationController
     @article = @user.articles.create(params[:article])
 
     if @article.save
-      response = Manu::Requests::Assignment.new.request_translation(current_user, @article)
+      response = Manu::Requests::Assignment.new.request_translation(@user, @article)
       redirect_to @article, notice: "Article was successfully created."
     else
       render "new"
@@ -40,8 +28,6 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @article = Article.find(params[:id])
-
     if @article && @article.update_attributes(params[:article])
       redirect_to @article, notice: "Article was successfully updated."
     else
@@ -52,9 +38,8 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
-    redirect_to articles_url
+    redirect_to articles_url, notice: "Article was succefully deleted"
   end
 
 end
