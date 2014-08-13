@@ -23,4 +23,14 @@ class Article < ActiveRecord::Base
   def total_requests
     self.requests.count
   end
+
+  def total_translations
+    self.translations.count
+  end
+
+  def self.top_requested
+    select('articles.*, COUNT(requests.article_id) AS requests_count').
+    joins(:requests).group('requests.article_id').order('requests_count DESC')
+  end
+
 end

@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.top_requested
   end
 
   # GET /articles/1
@@ -30,6 +30,7 @@ class ArticlesController < ApplicationController
     @article = @user.articles.create(params[:article])
 
     if @article.save
+      response = Manu::Requests::Assignment.new.request_translation(current_user, @article)
       redirect_to @article, notice: "Article was successfully created."
     else
       render "new"

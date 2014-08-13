@@ -5,6 +5,7 @@
     <h2><%= link_to article.name, article %></h2>
     <h3>Author: <%= article.author.username %></h3>
     <h3>Requests: <%= article.total_requests %></h3>
+    <h3>Translations: <%= article.total_translations %></h3>
     <%= simple_format article.content %>
   <% end %>
 </div>
