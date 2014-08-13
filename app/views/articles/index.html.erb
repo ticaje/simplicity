@@ -10,4 +10,8 @@
   <% end %>
 </div>
 
-<p><%= link_to "New Article", new_article_path %></p>
+<p>
+  <% if permitted_to? :create, Article.new %>
+    <p><%= link_to "New Article", new_article_path %></p>
+  <% end %>
+</p>

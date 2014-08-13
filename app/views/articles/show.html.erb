@@ -4,12 +4,14 @@
 <h3>Category: <%= link_to @article.category.name, categories_path() %></h3>
 
 <p>
-  <% if current_user.present? %>
+  <% if permitted_to? :edit, @article %>
     <%= link_to "Edit", edit_article_path(@article) %> |
+  <% end %>
+  <% if permitted_to? :translate, @article %>
     <%= link_to "Translate", translate_path(@article) %> |
-    <% if !@article.already_requested?(current_user) %>
-      <%= link_to "Request translation", ask_path(@article) %> |
-    <% end %>
+  <% end %>
+  <% if !@article.already_requested?(current_user) %>
+    <%= link_to "Request translation", ask_path(@article) %> |
   <% end %>
   <%= link_to "Back to Articles", articles_path %>
 </p>
