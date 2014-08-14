@@ -1,5 +1,5 @@
 class Translation < ActiveRecord::Base
-  attr_accessible :article_id, :content, :link, :user_id
+  attr_accessible :article_id, :content, :link, :user
 
   belongs_to :article
   belongs_to :user

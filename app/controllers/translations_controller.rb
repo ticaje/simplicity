@@ -11,22 +11,6 @@ class TranslationsController < ApplicationController
     end
   end
 
-  # GET /translations/1
-  # GET /translations/1.json
-  def show
-    @translation = Translation.find_by_id(params[:id])
-  end
-
-  def edit
-    @translation = Translation.find(params[:id])
-  end
-
-  # GET /translations/new
-  # GET /translations/new.json
-  def new
-    @translation = Translation.new
-  end
-
   # POST /translations
   # POST /translations.json
   def create
@@ -44,10 +28,8 @@ class TranslationsController < ApplicationController
   # PUT /translations/1
   # PUT /translations/1.json
   def update
-    @translation = Translation.find_by_id(params[:id])
-
     if @translation && @translation.update_attributes(params[:translation])
-      redirect_to @article, notice: "Translation was successfully updated."
+      redirect_to @translation, notice: "Translation was successfully updated."
     else
       render "edit"
     end

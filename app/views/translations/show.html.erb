@@ -1,0 +1,10 @@
+<h1>Translation for:<%= @translation.article.name %></h1>
+
+<%= simple_format @translation.content %>
+
+<p>
+  <% if permitted_to? :edit, @translation %>
+    <%= link_to "Edit", edit_translation_path(@translation) %> |
+  <% end %>
+  <%= link_to "Back to translations", translations_path %>
+</p>
