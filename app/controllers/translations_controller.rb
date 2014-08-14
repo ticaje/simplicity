@@ -38,8 +38,7 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1
   # DELETE /translations/1.json
   def destroy
-    @translation = Translation.find_by_id(params[:id])
     @translation.destroy
-    redirect_to translations_url
+    redirect_to translations_url, notice: "Translation successfully deleted"
   end
 end
