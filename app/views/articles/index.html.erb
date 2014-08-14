@@ -1,0 +1,17 @@
+<h1>Articles</h1>
+
+<div id="articles">
+  <% @articles.each do |article| %>
+    <h2><%= link_to article.name, article %></h2>
+    <h3>Author: <%= article.author.username %></h3>
+    <h3>Requests: <%= article.total_requests %></h3>
+    <h3>Translations: <%= article.total_translations %></h3>
+    <%= simple_format article.content %>
+  <% end %>
+</div>
+
+<p>
+  <% if permitted_to? :create, Article.new %>
+    <p><%= link_to "New Article", new_article_path %></p>
+  <% end %>
+</p>

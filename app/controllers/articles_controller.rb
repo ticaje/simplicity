@@ -1,70 +1,45 @@
 class ArticlesController < ApplicationController
-  respond_to :json
+  filter_resource_access
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
-    render_with(@articles)
+    @articles = Article.top_requested
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
-  def show
-    @article = Article.find_by_id(params[:id])
-    # Render status code: Found
-    unless @article
-      render_with(@article, 302)
-    else
-      render_with(@article, 404)
-    end
-  end
-
-  # GET /articles/new
-  # GET /articles/new.json
-  def new
-    @article = Article.new
-    #render json: @article
-    render_with(@article)
+  def edit
+    @article = Article.find(params[:id])
   end
 
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.create(params[:article])
+    @user = current_user
+    @article = @user.articles.create(params[:article])
+
     if @article.save
-      # Render status code: Created
-      render_with(@article, 201)
+      response = Manu::Requests::Assignment.new.request_translation(@user, @article)
+      redirect_to @article, notice: "Article was successfully created."
     else
-      # Render status code: Unprocessable entity
-      render_with(@article.errors, 422, 'Could not create ')
+      render "new"
     end
   end
 
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @article = Article.find_by_id(params[:id])
-
     if @article && @article.update_attributes(params[:article])
-      # Render status code: ok
-      render_with(@article, 200)
+      redirect_to @article, notice: "Article was successfully updated."
     else
-      # Render status code: Unprocessable entity
-      render_with(@article, 422)
+      render "edit"
     end
   end
 
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find_by_id(params[:id])
-    if @article
-      @article.destroy
-      render_with(nil, 200, "Deleted!!!")
-    else
-      render_with(nil, 404, "Record not found")
-    end
+    @article.destroy
+    redirect_to articles_url, notice: "Article was succefully deleted"
   end
 
 end

@@ -20,7 +20,7 @@ describe User do
     it { should have_many(:translations) }
     it { should have_many(:votes) }
     it { should have_many(:articles) }
-    it { should have_many(:petitions).class_name("Article") }
+    it { should have_many(:petitions) }
     it { should have_many(:requests) }
   end
 

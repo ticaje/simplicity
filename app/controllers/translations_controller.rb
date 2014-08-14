@@ -1,56 +1,37 @@
 class TranslationsController < ApplicationController
-  respond_to :json
+  filter_resource_access
 
   # GET /translations
   # GET /translations.json
   def index
-    @translations = Translation.all
-    render_with(@translations)
-  end
-
-  # GET /translations/1
-  # GET /translations/1.json
-  def show
-    @translation = Translation.find_by_id(params[:id])
-    # Render status code: Found
-    unless @translation
-      render_with(@translation, 302)
+    if current_user
+      @translations = current_user.translations
     else
-      render_with(@translation, 404)
+      @translations = Translation.all
     end
-  end
-
-  # GET /translations/new
-  # GET /translations/new.json
-  def new
-    @translation = Translation.new
-    render_with(@translation)
   end
 
   # POST /translations
   # POST /translations.json
   def create
-    @translation = Translation.create(params[:translation])
+    @user = current_user
+    @translation = @user.translations.create(params[:translation])
+
     if @translation.save
-      # Render status code: Created
-      render_with(@translation, 201)
+      redirect_to @translation, notice: "Translation was successfully created."
     else
-      # Render status code: Unprocessable entity
-      render_with(@translation.errors, 422, 'Could not create ')
+      @article = Article.find(params[:translation][:article_id])
+      render "users/translate"
     end
   end
 
   # PUT /translations/1
   # PUT /translations/1.json
   def update
-    @translation = Translation.find_by_id(params[:id])
-
     if @translation && @translation.update_attributes(params[:translation])
-      # Render status code: ok
-      render_with(@translation, 200)
+      redirect_to @translation, notice: "Translation was successfully updated."
     else
-      # Render status code: Unprocessable entity
-      render_with(@translation, 422)
+      render "edit"
     end
   end
 
@@ -58,11 +39,7 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1.json
   def destroy
     @translation = Translation.find_by_id(params[:id])
-    if @translation
-      @translation.destroy
-      render_with(nil, 200, "Deleted!!!")
-    else
-      render_with(nil, 404, "Record not found")
-    end
+    @translation.destroy
+    redirect_to translations_url
   end
 end

@@ -15,6 +15,7 @@ describe Article do
     it { should belong_to(:category) }
     it { should have_many(:translations) }
     it { should have_many(:requests) }
+    it { should have_many(:requesters) }
   end
 
   describe "Validations" do
