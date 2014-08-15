@@ -4,7 +4,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.top_requested
+    if (search = params[:search]) && (Article.respond_to?(search.to_sym))
+      @articles = Article.send(search)
+    else
+      @articles = Article.top_requested
+    end
   end
 
   # POST /articles
