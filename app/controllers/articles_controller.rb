@@ -7,10 +7,6 @@ class ArticlesController < ApplicationController
     @articles = Article.top_requested
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
-
   # POST /articles
   # POST /articles.json
   def create
@@ -39,7 +35,13 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article.destroy
-    redirect_to articles_url, notice: "Article was succefully deleted"
+    redirect_to articles_url, notice: "Article was successfully deleted"
   end
 
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @article = Article.find(params[:id])
+    @article.add_evaluation(:points, value, current_user)
+    redirect_to :back, notice: "Thank you for voting!"
+  end
 end
