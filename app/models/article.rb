@@ -33,4 +33,12 @@ class Article < ActiveRecord::Base
     joins(:requests).group('requests.article_id').order('requests_count DESC')
   end
 
+  def self.top_translated
+    select('articles.*, COUNT(translations.article_id) AS count').
+    joins(:translations).group('translations.article_id').order('count DESC')
+  end
+
+  def self.not_translated
+    includes(:translations).where("translations.id IS NULL")
+  end
 end
