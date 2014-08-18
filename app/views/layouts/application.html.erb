@@ -4,15 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= page_title %></title>
 
     <%= stylesheet_link_tag    "application", "simplicity/application" %>
     <%= javascript_include_tag "application", "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body class="<%= page_classes %>">
     <%= render 'layouts/simplicity/header' %>
-    <%= yield %>
+    <%= render 'shared/flash_messages' %>
+    <div class="page">
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

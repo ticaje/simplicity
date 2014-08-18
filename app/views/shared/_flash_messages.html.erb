@@ -1,0 +1,6 @@
+<% flash.each do |key, value| %>
+  <div class="alert <%= key.to_s == "notice" ? "alert-success" : "alert-error" %>">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= value %>
+  </div>
+<% end %>
