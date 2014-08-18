@@ -3,7 +3,9 @@ Simplicity::Application.routes.draw do
   match 'account/ask/:article' => 'users#ask', :as => :ask
   devise_for :users, :path => :account, :path_names => { :sign_up => "register", :sign_in => "login", :sign_out => "logout" }, :controllers => { :registrations => "registrations" }
 
-  resources :articles
+  resources :articles do
+    member { post :vote }
+  end
   resources :categories
 
   match 'account/translate/:article' => 'users#translate', :as => :translate

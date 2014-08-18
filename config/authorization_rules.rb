@@ -14,7 +14,7 @@ authorization do
 
   role :author do
     includes :guest
-    has_permission_on :articles, :to => [:new, :create, :translate]
+    has_permission_on :articles, :to => [:new, :create, :translate, :vote, :ask]
     has_permission_on :articles, :to => [:edit, :update, :destroy] do
       if_attribute :author => is { user }
     end
