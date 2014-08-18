@@ -30,15 +30,20 @@ class Article < ActiveRecord::Base
 
   def self.top_requested
     select('articles.*, COUNT(requests.article_id) AS requests_count').
-    joins(:requests).group('requests.article_id').order('requests_count DESC')
+      joins(:requests).group('requests.article_id').order('requests_count DESC')
   end
 
   def self.top_translated
     select('articles.*, COUNT(translations.article_id) AS count').
-    joins(:translations).group('translations.article_id').order('count DESC')
+      joins(:translations).group('translations.article_id').order('count DESC')
   end
 
   def self.not_translated
     includes(:translations).where("translations.id IS NULL")
   end
+
+  def self.by_votes
+    find_with_reputation(:points, :all, { :order => 'points DESC' })
+  end
+
 end
