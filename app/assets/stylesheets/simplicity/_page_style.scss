@@ -1,0 +1,9 @@
+html{
+  body{
+    background: $body-bg-color;
+  }
+}
+
+@import "simplicity/header/style";
+@import "simplicity/main/style";
+@import "simplicity/footer/style";
