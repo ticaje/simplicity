@@ -1,0 +1,14 @@
+.registrations, .sessions, .passwords{
+  .register-box{
+    margin: 20px auto;
+    background: #fff;
+    margin-bottom: 40px;
+    -webkit-box-shadow: 0 0 20px #bbb;
+    -moz-box-shadow: 0 0 20px #bbb;
+    h5{ text-align: center; padding-top: 20px; text-transform: uppercase; }
+    .inner-content{
+      padding: 20px;
+      .links div{ padding: 3px 0; }
+    }
+  }
+}
