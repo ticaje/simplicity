@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   filter_resource_access
+  before_filter :authenticate_user!, only:[:new]
 
   # GET /articles
   # GET /articles.json
