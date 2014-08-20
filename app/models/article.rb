@@ -28,6 +28,10 @@ class Article < ActiveRecord::Base
     self.translations.count
   end
 
+  def reputation
+    self.reputation_for(:points)
+  end
+
   def self.top_requested
     select('articles.*, COUNT(requests.article_id) AS requests_count').
       joins(:requests).group('requests.article_id').order('requests_count DESC')
