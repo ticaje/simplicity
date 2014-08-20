@@ -7,8 +7,10 @@ class ArticlesController < ApplicationController
   def index
     if (search = params[:search]) && (Article.respond_to?(search.to_sym))
       @articles = Article.send(search)
+      @tab = search
     else
       @articles = Article.top_requested
+      @tab = "top_requested"
     end
   end
 

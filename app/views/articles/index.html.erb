@@ -1,17 +1,40 @@
-<h1>Articles</h1>
+<div class="row main-content">
+  <div class="large-12 large-centered columns" style="background: #fff" >
+    <div class="header">
+      <div class="row">
+        <div class="columns large-6">
+          <h2 class="title">All Articles</h2>
+        </div>
+        <div class="columns large-2 add-article">
+          <p><%= link_to "New Article", new_article_path, :class => "button small" %></p>
+        </div>
+        <div class="columns large-4 search-article">
+          <p><input tabindex="1" id="autocomplete" type="search" placeholder="Search Article" autocomplete="off"></p>
+        </div>
+      </div>
+      <div id="tab-full-container" class='tab-container'>
+        <div class='etabs'>
+          <span class='tab <%= "active" if @tab == "top_requested"  %>'><a href="/?search=top_requested">Most requested</a></span>
+          <span class='tab <%= "active" if @tab == "not_translated" %>'><a href="/?search=not_translated">Not translated</a></span>
+          <span class='tab <%= "active" if @tab == "top_translated" %>'><a href="/?search=top_translated">Most translated</a></span>
+        </div>
+      </div>
+    </div>
+    <div id="articles">
+      <h3 style="padding-top:30px;"></h3>
+      <% @articles.each do |article| %>
+        <div class="article" id="article-<%= article.id %>">
+          <h2><%= link_to article.name, article %></h2>
+          <h3>Author: <%= article.author.username %></h3>
+          <h3>Requests: <%= article.total_requests %></h3>
+          <h3>Translations: <%= article.total_translations %></h3>
+          <%= simple_format article.content %>
+        </div>
+      <% end %>
+    </div>
 
-<div id="articles">
-  <% @articles.each do |article| %>
-    <h2><%= link_to article.name, article %></h2>
-    <h3>Author: <%= article.author.username %></h3>
-    <h3>Requests: <%= article.total_requests %></h3>
-    <h3>Translations: <%= article.total_translations %></h3>
-    <%= simple_format article.content %>
-  <% end %>
+    <div class="bottom-box">
+      <p><%= link_to "New Article", new_article_path %></p>
+    </div>
+  </div>
 </div>
-
-<p>
-  <% if permitted_to? :create, Article.new %>
-    <p><%= link_to "New Article", new_article_path %></p>
-  <% end %>
-</p>

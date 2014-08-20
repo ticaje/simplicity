@@ -1,6 +1,8 @@
 <% flash.each do |key, value| %>
-  <div class="alert <%= key.to_s == "notice" ? "alert-success" : "alert-error" %>">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <%= value %>
+  <div class="row" style="padding-top: 20px;">
+    <div class="columns large-6 large-centered alert <%= key.to_s == "notice" ? "alert-success" : "alert-error" %>">
+      <%= value %>
+      <button type="button" class="close tiny" data-dismiss="alert">×</button>
+    </div>
   </div>
 <% end %>
