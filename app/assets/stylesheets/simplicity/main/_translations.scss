@@ -1,0 +1,71 @@
+.translations{
+  .main-content{
+    padding: 20px 0;
+    .header{
+      padding: 20px 0 0 0;
+      border-bottom: 1px solid #999;
+      .tab-container{
+        /* Example Styles for Demo */
+        .etabs { margin: 0; padding: 0; }
+        .tab { display: inline-block; zoom:1; *display:inline; background: $basic-color; border: solid 1px #999; border-bottom: none; }
+        .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; border: 1px solid transparent; border-bottom: solid 1px #999; margin: 0 0 -1px -1px }
+        .tab:hover { background: #fff; padding-top: 2px; position: relative; top: 1px; border-bottom-color: #fff; }
+        .tab.active { background: #fff; padding-top: 2px; position: relative; top: 1px; border-bottom-color: #fff; }
+        .tab.active a { font-weight: bold; border-bottom-color: #eee; }
+        .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; }
+        .panel-container { margin-bottom: 10px; }
+
+      }
+      .search-translation{ padding-top: 13px; }
+      .add-translation{ padding-top: 10px; }
+    }
+    #translations{
+      background: #fff;
+      border: 1px solid #999;
+      top: -3px;
+      position: relative;
+      padding: 0 20px 20px;
+      .translation-row{
+        border-bottom: 1px solid #ccc;
+        padding: 20px 0 0 10px;
+        .translation-header{
+          padding: 10px;
+          .rating-summary{
+            .columns{ margin-right: 15px; }
+            .text, .number{
+              font-size: 12px;
+              text-align: center;
+              color: #695050;
+            }
+            .rs-request{ background: #ccc; padding: 5px 0; }
+            .rs-translation{ background: #ddd; padding: 5px 0; }
+            .rs-reputation{ background: #eee; padding: 5px 0; }
+            .active{ font-weight: bold; }
+          }
+        }
+        .translation{
+          padding: 10px 0 10px 0px;
+          .translation-name{
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .author{
+            font-size: 12px;
+            color: $author-color;
+          }
+          .category{
+            font-size: 12px;
+            color: $category-color;
+          }
+          .article{
+            font-size: 12px;
+            color: $author-color;
+          }
+        }
+      }
+    }
+    .bottom-box{
+      padding: 10px 0;
+    }
+  }
+}

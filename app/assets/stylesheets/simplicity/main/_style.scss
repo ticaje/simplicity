@@ -1,6 +1,13 @@
-
+/* General styles */
+body.articles, body.translations{
+  .super-container{
+    @include funny-content-border();
+    background: $white-color;
+  }
+}
 
 
 
 @import "simplicity/main/user";
 @import "simplicity/main/articles";
+@import "simplicity/main/translations";

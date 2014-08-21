@@ -58,6 +58,10 @@ $category-color: #C53737;
 @mixin link-like-button($pu:10, $ps:20, $bg-color:$basic-orange, $color:$white-color){
   background: $bg-color; color: $color; padding: $pu+px $ps+px; font-family: 'Museo Sans';
 }
+@mixin funny-content-border(){
+    -webkit-box-shadow: 0 0 20px #bbb;
+    -moz-box-shadow: 0 0 20px #bbb;
+}
 
 
 
