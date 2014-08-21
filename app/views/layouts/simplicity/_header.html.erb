@@ -12,7 +12,8 @@
       <li class="divider"></li>
       <li><%= link_to "Translations", translations_path %></li>
       <li class="divider"></li>
-      <li><%= link_to "Contact Us" %></li>
+      <li><%= link_to "Report bug" %></li>
+      <li class="divider"></li>
       <li class="divider"></li>
       <% if user_signed_in? %>
         <li><%= link_to "... Hello #{current_user.username }", edit_user_registration_path %></li>
