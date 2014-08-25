@@ -4,7 +4,7 @@ authorization do
   end
 
   role :guest do
-    has_permission_on :articles, :to => [:new, :index, :show]
+    has_permission_on :articles, :to => [:new, :index, :show, :category]
     has_permission_on :translations, :to => [:index, :show]
     has_permission_on :comments, :to => [:new, :create]
     has_permission_on :comments, :to => [:edit, :update] do

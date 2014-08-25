@@ -1,17 +1,24 @@
 class ArticlesController < ApplicationController
-  filter_resource_access
   before_filter :authenticate_user!, only:[:new]
+  before_filter :find_categories_and_tabs
+  filter_access_to [:category]
+  filter_resource_access
 
   # GET /articles
   # GET /articles.json
   def index
     if (search = params[:search]) && (Article.respond_to?(search.to_sym))
       @articles = Article.send(search)
-      @tab = search
     else
       @articles = Article.top_requested
-      @tab = "top_requested"
     end
+  end
+
+  # GET /articles
+  # GET /articles.json
+  def category
+    @articles = Article.with_category(params[:category])
+    respond_with_decorated(:articles, template: "articles/index")
   end
 
   # POST /articles
@@ -51,4 +58,16 @@ class ArticlesController < ApplicationController
     @article.add_evaluation(:points, value, current_user)
     redirect_to :back, notice: "Thank you for voting!"
   end
+
+private
+
+  def find_categories_and_tabs
+    @categories = Category.all
+    if (search = params[:search])
+      @tab = search
+    else
+      @tab = "top_requested"
+    end
+  end
+
 end
