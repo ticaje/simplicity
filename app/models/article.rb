@@ -50,4 +50,7 @@ class Article < ActiveRecord::Base
     find_with_reputation(:points, :all, { :order => 'points DESC' })
   end
 
+  def self.with_category(category)
+    joins(:category).where("categories.name = :category OR categories.id = :category", category: category.to_param)
+  end
 end
