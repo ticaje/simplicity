@@ -17,8 +17,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def category
-    @articles = Article.with_category(params[:category])
-    respond_with_decorated(:articles, template: "articles/index")
+    @articles = Article.with_category(params[:category], params[:search] || "top_requested")
+    respond_with(:articles, template: "articles/index")
   end
 
   # POST /articles
@@ -63,7 +63,7 @@ private
 
   def find_categories_and_tabs
     @categories = Category.all
-    if (search = params[:search])
+    if (search = params[:search]) && (Article.respond_to?(search.to_sym))
       @tab = search
     else
       @tab = "top_requested"
