@@ -5,26 +5,7 @@
       <h3 style="padding-top:10px;"></h3>
       <% @articles.each do |article| %>
         <div class="row article-row">
-          <div class="columns large-4 article-header">
-            <%= link_to(article) do %>
-              <div class="rating-summary row">
-                <div class="rs-request columns large-3 <%= 'active' if @tab == 'top_requested' %>">
-                  <div class="number"><%= article.total_requests %></div>
-                  <div class="text">Requests </div>
-                </div>
-                <div class="rs-translation columns large-3 <%= 'active' if @tab == 'top_translated' %>">
-                  <div class="number"><%= article.total_translations %></div>
-                  <div class="text">Translations </div>
-                </div>
-                <div class="rs-reputation columns large-3 <%= 'active' if @tab == 'by_votes' %>">
-                  <div class="number"><%= article.reputation %></div>
-                  <div class="text">Reputation </div>
-                </div>
-                <div class="columns large-1 large-offset-1">
-                </div>
-              </div>
-            <% end %>
-          </div>
+          <%= render "articles/baloons", :article => article %>
           <div class="article columns large-8">
             <div id="article-<%= article.id %>">
               <%= link_to article.name, article, :class => "article-name" %>
@@ -41,7 +22,6 @@
         </div>
       <% end %>
     </div>
-
     <div class="bottom-box">
       <p><%= link_to "New Article", new_article_path %></p>
     </div>
