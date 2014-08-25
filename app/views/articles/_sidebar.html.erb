@@ -1,0 +1,13 @@
+<div id="sidebar" class="columns large-3" style="text-align: center; padding: 0 20px;">
+  <div style="background: white; padding: 40px 20px;">
+    <h5 style="margin:0; font-weight:bold; ">Categories</h5>
+    <div class="category-list" style="padding-top: 15px">
+      <ul class="no-bullet">
+        <% @categories.each do |category| %>
+          <li><%= link_to category.name, category_path(category) %></li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>
