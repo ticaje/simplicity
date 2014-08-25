@@ -5,6 +5,32 @@ body.articles, body.translations{
     background: $white-color;
   }
 }
+body{
+  #sidebar-container{
+    padding: 0 20px;
+    #sidebar{
+      @include funny-content-border();
+      background: $white-color;
+      padding: 40px 20px;
+      text-align: center;
+      #categories{
+        h5 {
+          color: #008cba;
+          margin:0; font-weight:bold;
+        }
+        .category-list{
+          padding-top: 15px;
+          ul{
+            li{
+              color: #008cba;
+              span { padding-left: 2px; }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 
 

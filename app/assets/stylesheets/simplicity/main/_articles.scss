@@ -32,12 +32,16 @@
         .article-header{
           padding: 10px;
           .rating-summary{
-            .columns{ margin-right: 15px; }
+            .columns{
+              margin-right: 15px;
+              @include funny-content-border(1,1,1, #443939);
+            }
             .text, .number{
               font-size: 12px;
               text-align: center;
               color: #695050;
             }
+            .text{ font-size: 10px; }
             .rs-request{ background: #ccc; padding: 5px 0; }
             .rs-translation{ background: #ddd; padding: 5px 0; }
             .rs-reputation{ background: #eee; padding: 5px 0; }
