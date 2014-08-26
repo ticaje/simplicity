@@ -21,6 +21,10 @@ class ArticlesController < ApplicationController
     respond_with(:articles, template: "articles/index")
   end
 
+  def show
+    respond_with_decorated(:article)
+  end
+
   # POST /articles
   # POST /articles.json
   def create
@@ -56,7 +60,7 @@ class ArticlesController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @article = Article.find(params[:id])
     @article.add_evaluation(:points, value, current_user)
-    redirect_to :back, notice: "Thank you for voting!"
+    redirect_to article_url(@article), notice: "Thank you for voting!"
   end
 
 private
