@@ -1,5 +1,5 @@
 <div class="row main-content">
-  <div class="super-container large-9 columns">
+  <div class="super-container large-9 columns index">
     <%= render "articles/header" %>
     <div id="articles">
       <h3 style="padding-top:10px;"></h3>
@@ -23,7 +23,7 @@
       <% end %>
     </div>
     <div class="bottom-box">
-      <p><%= link_to "New Article", new_article_path %></p>
+      <p><%= link_to "New Article", new_article_path, :class => "button small" %></p>
     </div>
   </div>
   <%= render "articles/sidebar" %>

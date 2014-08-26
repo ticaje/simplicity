@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :article_name_or_title %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
@@ -20,9 +20,10 @@
     <%= f.text_area :content %>
   </div>
   <div class="field">
+    <%= f.label :category%><br />
     <%= f.collection_select :category_id, Category.all, :id, :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit action_name == "new" ? "Create article" : "Update Article", :class => "button small" %>
   </div>
 <% end %>

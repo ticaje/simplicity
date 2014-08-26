@@ -1,27 +1,47 @@
-<h1><%= @article.name %></h1>
-<h2>
-  Author: <%= @article.author.username %>
-</h2>
-
-<%= simple_format @article.content %>
-<h3>Category: <%= link_to @article.category.name, categories_path() %></h3>
-
-<p>
-  <% if permitted_to? :edit, @article %>
-    <%= link_to "Edit", edit_article_path(@article) %>
-  <% end %>
-  <% if permitted_to? :translate, @article %>
-   | <%= link_to "Translate", translate_path(@article) %>
-  <% end %>
-  <% if !@article.already_requested?(current_user) %>
-   | <%= link_to "Request translation", ask_path(@article) %>
-  <% end %>
-
-  <div>
-    <span>This article has <%= pluralize @article.reputation_for(:points).to_i, "vote" %>
-      <% if !@article.already_voted_by?(current_user) %>
-        <%= link_to "Up", vote_article_path(@article, type: "up"), method: "post" %>
-      <% end %>
+<div class="row main-content">
+  <div class="super-container large-9 columns show">
+    <div class="header">
+      <h2 class="title"><%= link_to @article.name, @article %></h2>
     </div>
-    <%= link_to "Back to Articles", articles_path %>
-  </p>
+    <div class="article-content">
+      <div class="row">
+        <div class="columns large-2">
+          <div class="votecell">
+            <span class="atom">Votes</span>
+            <div class="atom"><%= @article.reputation_for(:points).to_i %></div>
+            <div class="atom">
+              <% if !@article.already_voted_by?(current_user) %>
+                <%= link_to "Up", vote_article_path(@article, type: "up"), method: "post" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="columns large-10">
+          <%= simple_format @article.content %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="columns">
+          <%= render "articles/edit", :article => @article %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="columns large-4 avatar">
+          <h5>
+            On: <%= @article.creation_date %><br/>
+            By: <%= @article.author.username %>
+          </h5>
+        </div>
+        <div class="columns large-4 category">
+          <h5><%= link_to @article.category.name, category_path(@article.category) %></h5>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns large-4">
+        <%= link_to "<< Back to Articles", articles_path, :class => "button small" %>
+      </div>
+    </div>
+  </div>
+  <%= render "articles/sidebar" %>
+  </div>

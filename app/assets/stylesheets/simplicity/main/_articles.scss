@@ -2,8 +2,12 @@
   .main-content{
     padding: 20px 0;
     .header{
+      h2 {
+        font-size: 30px;
+        color: $basic-blue;
+        a{ color: $basic-blue; }
+      }
       padding: 20px 0 0 0;
-      border-bottom: 1px solid #999;
       .tab-container{
         /* Example Styles for Demo */
         .etabs { margin: 0; padding: 0; }
@@ -63,6 +67,43 @@
             color: $category-color;
           }
         }
+      }
+    }
+    .index{
+      .header{
+        border-bottom: 1px solid #999;
+      }
+    }
+    .show{
+      h2.title{ border-bottom: 1px solid #ccc; margin-bottom: 20px; }
+      .article-content{
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        .votecell{
+          color: #4A565A;
+          background: #c4dae9;
+          padding: 20px;
+          text-align: center;
+          .atom{ padding: 2px 0 }
+        }
+        h5{
+          color: #4A565A;
+          background: #c4dae9;
+          padding: 10px;
+          font-size: 14px;
+        }
+        .edition{
+          li{
+            background: #c4dae9;
+            padding: 0 10px;
+          }
+        }
+        .avatar{
+          h5{
+          }
+        }
+        .category{ padding: 10px; text-align: center; }
       }
     }
     .bottom-box{

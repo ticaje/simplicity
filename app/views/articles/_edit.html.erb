@@ -1,0 +1,19 @@
+<div class="edition">
+  <ul class="inline-list">
+  <% if !article.already_requested?(current_user) %>
+    <li>
+      <%= link_to "Request translation", ask_path(article) %>
+    </li>
+  <% end %>
+  <% if permitted_to? :edit, article %>
+    <li>
+      <%= link_to "Edit", edit_article_path(article) %>
+    </li>
+  <% end %>
+  <% if permitted_to? :translate, article %>
+    <li>
+      <%= link_to "Translate", translate_path(article) %>
+    </li>
+  <% end %>
+  </ul>
+</div>
