@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!, only:[:new]
-  before_filter :find_categories_and_tabs
+  before_filter :find_tabs
   filter_access_to [:category]
   filter_resource_access
 
@@ -63,10 +63,9 @@ class ArticlesController < ApplicationController
     redirect_to article_url(@article), notice: "Thank you for voting!"
   end
 
-private
+  private
 
-  def find_categories_and_tabs
-    @categories = Category.all
+  def find_tabs
     if (search = params[:search]) && (Article.respond_to?(search.to_sym))
       @tab = search
     else
