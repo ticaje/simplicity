@@ -18,7 +18,7 @@ authorization do
     has_permission_on :articles, :to => [:edit, :update, :destroy] do
       if_attribute :author => is { user }
     end
-    has_permission_on :translations, :to => [:new, :create]
+    has_permission_on :translations, :to => [:new, :create, :vote]
     has_permission_on :translations, :to => [:edit, :update, :destroy] do
       if_attribute :user => is { user }
     end

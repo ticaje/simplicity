@@ -11,6 +11,10 @@ class TranslationsController < ApplicationController
     end
   end
 
+  def show
+    respond_with_decorated(:translation)
+  end
+
   # POST /translations
   # POST /translations.json
   def create
@@ -40,5 +44,12 @@ class TranslationsController < ApplicationController
   def destroy
     @translation.destroy
     redirect_to translations_url, notice: "Translation successfully deleted"
+  end
+
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @translation = Translation.find(params[:id])
+    @translation.add_evaluation(:points, value, current_user)
+    redirect_to translation_url(@translation), notice: "Thank you for voting!"
   end
 end

@@ -11,7 +11,9 @@ Simplicity::Application.routes.draw do
   resources :categories
 
   match 'account/translate/:article' => 'users#translate', :as => :translate
-  resources :translations
+  resources :translations do
+    member { post :vote }
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
