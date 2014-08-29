@@ -25,7 +25,7 @@ class TranslationsController < ApplicationController
       redirect_to @translation, notice: "Translation was successfully created."
     else
       @article = Article.find(params[:translation][:article_id])
-      render "users/translate"
+      redirect_to translate_path(@article)
     end
   end
 
