@@ -20,4 +20,12 @@ class Translation < ActiveRecord::Base
   def self.top_votes
     find_with_reputation(:points, :all, { :order => 'points DESC' })
   end
+
+  def author
+    self.user
+  end
+
+  def category
+    self.article.category
+  end
 end
