@@ -1,5 +1,5 @@
 /* General styles */
-body.articles, body.translations{
+body.articles, body.users, body.translations{
   .super-container{
     @include funny-content-border();
     background: $white-color;

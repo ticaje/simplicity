@@ -1,4 +1,4 @@
-.articles{
+.articles, .users, .translations{
   .main-content{
     padding: 20px 0;
     .header{
@@ -76,7 +76,7 @@
     }
     .show{
       h2.title{ border-bottom: 1px solid #ccc; margin-bottom: 20px; }
-      .article-content{
+      .article-content, .translation-content{
         border-bottom: 1px solid #ccc;
         padding-bottom: 15px;
         margin-bottom: 15px;
@@ -95,8 +95,6 @@
         }
         .edition{
           li{
-            background: #c4dae9;
-            padding: 0 10px;
           }
         }
         .avatar{
