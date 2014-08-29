@@ -13,7 +13,8 @@
 
   <div class="field">
     <%= f.label :original_content %><br />
-    <%= simple_format @translation.article.name %>
+    <%= simple_format @article.content %>
+    <%= f.hidden_field :article_id, :value => @article.id %>
   </div>
   <div class="field">
     <%= f.label :translation %><br />
@@ -22,6 +23,6 @@
   <div class="field">
   </div>
   <div class="actions">
-    <%= f.submit "Update translation", :class => "button small" %>
+    <%= f.submit action_name.capitalize , :class => "button small" %>
   </div>
 <% end %>

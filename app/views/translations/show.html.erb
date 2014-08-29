@@ -1,10 +1,29 @@
-<h1>Translation for:<%= @translation.article.name %></h1>
-
-<%= simple_format @translation.content %>
-
-<p>
-  <% if permitted_to? :edit, @translation %>
-    <%= link_to "Edit", edit_translation_path(@translation) %> |
-  <% end %>
-  <%= link_to "Back to translations", translations_path %>
-</p>
+<div class="row main-content">
+  <div class="super-container large-9 columns show">
+    <div class="header">
+      <h2 class="title">Translation for: <%= link_to @translation.article.name, article_path(@translation.article) %></h2>
+    </div>
+    <div class="translation-content">
+      <div class="row">
+        <div class="columns large-2">
+          <%= render "shared/vote_cell", :instance => @translation %>
+        </div>
+        <div class="columns large-10">
+          <%= simple_format @translation.content %>
+        </div>
+      </div>
+      <%= render "articles/avatar", :instance => @translation %>
+      <div class="row">
+        <div class="columns">
+          <%= render "translations/edition_box", :translation => @translation %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns large-4">
+        <%= link_to "<< Back to Translations", translations_path, :class => "button small" %>
+      </div>
+    </div>
+  </div>
+  <%= render "articles/sidebar" %>
+  </div>
