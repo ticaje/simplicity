@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="columns large-4 avatar">
+    <h5>
+      On: <%= instance.creation_date %><br/>
+      By: <%= instance.author.username %>
+    </h5>
+  </div>
+  <div class="columns large-4 category">
+    <h5><%= link_to instance.category.name, category_path(instance.category) %></h5>
+  </div>
+</div>

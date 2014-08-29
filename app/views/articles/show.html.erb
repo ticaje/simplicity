@@ -6,34 +6,16 @@
     <div class="article-content">
       <div class="row">
         <div class="columns large-2">
-          <div class="votecell">
-            <span class="atom">Votes</span>
-            <div class="atom"><%= @article.reputation_for(:points).to_i %></div>
-            <div class="atom">
-              <% if !@article.already_voted_by?(current_user) %>
-                <%= link_to "Up", vote_article_path(@article, type: "up"), method: "post" %>
-              <% end %>
-            </div>
-          </div>
+          <%= render "shared/vote_cell", :instance => @article %>
         </div>
         <div class="columns large-10">
           <%= simple_format @article.content %>
         </div>
       </div>
+      <%= render "articles/avatar", :instance => @article %>
       <div class="row">
         <div class="columns">
-          <%= render "articles/edit", :article => @article %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="columns large-4 avatar">
-          <h5>
-            On: <%= @article.creation_date %><br/>
-            By: <%= @article.author.username %>
-          </h5>
-        </div>
-        <div class="columns large-4 category">
-          <h5><%= link_to @article.category.name, category_path(@article.category) %></h5>
+          <%= render "articles/edition_box", :article => @article %>
         </div>
       </div>
     </div>

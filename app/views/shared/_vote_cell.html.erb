@@ -1,0 +1,9 @@
+<div class="votecell">
+  <span class="atom">Votes</span>
+  <div class="atom"><%= instance.reputation_for(:points).to_i %></div>
+  <div class="atom">
+    <% if !instance.already_voted_by?(current_user) %>
+      <%= link_to "Up", vote_article_path||vote_translation_path(@article, type: "up"), method: "post" %>
+    <% end %>
+  </div>
+</div>
