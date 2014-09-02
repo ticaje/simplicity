@@ -4,7 +4,7 @@ class TranslationsController < ApplicationController
   # GET /translations
   # GET /translations.json
   def index
-    if current_user
+    if (current_user && !current_user.translations.empty?)
       @translations = current_user.translations
     else
       @translations = Translation.all
