@@ -16,7 +16,12 @@
     <%= render 'shared/flash_messages' %>
     <div class="page">
       <div id="main">
-        <%= yield %>
+        <div class="row main-content">
+          <%= yield %>
+          <div class="sidebar">
+            <%= yield(:sidebar) %>
+          </div>
+        </div>
       </div>
     </div>
   </body>

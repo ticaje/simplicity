@@ -1,16 +1,13 @@
-<div class="row main-content">
-  <div class="super-container large-9 columns edit">
-    <div class="header">
-      <h2>Edit Article</h2>
+<div class="super-container large-9 columns edit">
+  <div class="header">
+    <h2>Edit Article</h2>
 
-      <div class="content">
-        <%= render 'form' %>
-      </div>
-
-      <%= link_to 'Show', @article, :class => "button small"%>
-      <%= link_to 'Articles', articles_path, :class => "button small" %>
-      <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: 'Are you certain you want to delete this article ?' }, :class => "button small alert" %>
+    <div class="content">
+      <%= render 'form' %>
     </div>
+
+    <%= link_to 'Show', @article, :class => "button small"%>
+    <%= link_to 'Articles', articles_path, :class => "button small" %>
+    <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: 'Are you certain you want to delete this article ?' }, :class => "button small alert" %>
   </div>
-  <%= render "articles/sidebar" %>
 </div>

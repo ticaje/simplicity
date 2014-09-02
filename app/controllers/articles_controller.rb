@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   before_filter :find_tabs
   filter_access_to [:category]
   filter_resource_access
+  layout "article"
 
   # GET /articles
   # GET /articles.json
