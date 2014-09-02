@@ -29,7 +29,15 @@ body{
         }
       }
     }
+    /* Form errors box */
   }
+    .field_with_errors{
+      .message{
+        color: red;
+        position: relative;
+        top: -10px;
+      }
+    }
 }
 
 
