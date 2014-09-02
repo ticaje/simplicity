@@ -10,4 +10,12 @@ class Category < ActiveRecord::Base
   def total_articles
     self.articles.count
   end
+
+  def total_translations
+    translations = 0
+    self.articles.each do |article|
+      translations += article.translations.count
+    end
+    return translations
+  end
 end
