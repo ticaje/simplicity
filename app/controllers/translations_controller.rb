@@ -1,5 +1,6 @@
 class TranslationsController < ApplicationController
   filter_resource_access
+  layout "translation"
 
   # GET /translations
   # GET /translations.json

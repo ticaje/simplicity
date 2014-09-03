@@ -1,8 +1,14 @@
-<% flash.each do |key, value| %>
-  <div class="row" style="padding-top: 20px;">
-    <div class="columns large-6 large-centered alert <%= key.to_s == "notice" ? "alert-success" : "alert-error" %>">
-      <%= value %>
-      <button type="button" class="close tiny" data-dismiss="alert">×</button>
-    </div>
-  </div>
-<% end %>
+<div id="flash-container">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, :id => "flash_#{name}", :class => "columns large-6 large-centered" do %>
+      <div class="row">
+        <div class="columns large-11" >
+          <%= msg %>
+        </div>
+        <div class="columns large-1" >
+          <%= link_to "x", "#", :class => "closure" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
