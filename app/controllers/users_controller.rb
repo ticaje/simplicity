@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  layout "translation"
 
   def ask
     response = Manu::Requests::Assignment.new.request_translation(current_user, params[:article])

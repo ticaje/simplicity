@@ -28,6 +28,10 @@ class Article < ActiveRecord::Base
     self.translations.count
   end
 
+  def reputation
+    self.reputation_for(:points)
+  end
+
   def self.top_requested
     select('articles.*, COUNT(requests.article_id) AS requests_count').
       joins(:requests).group('requests.article_id').order('requests_count DESC')
@@ -46,4 +50,8 @@ class Article < ActiveRecord::Base
     find_with_reputation(:points, :all, { :order => 'points DESC' })
   end
 
+  def self.with_category(category, method)
+    method = self.respond_to?(method) ? method : "top_requested"
+    articles = joins(:category).where("categories.name = :category OR categories.id = :category", category: category.to_param).send(method)
+  end
 end

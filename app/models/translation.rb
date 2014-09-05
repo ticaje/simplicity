@@ -12,4 +12,20 @@ class Translation < ActiveRecord::Base
   def already_voted_by?(user)
      self.evaluators_for(:points).find{ |s| s == user } != nil
   end
+
+  def reputation
+    self.reputation_for(:points)
+  end
+
+  def self.top_votes
+    find_with_reputation(:points, :all, { :order => 'points DESC' })
+  end
+
+  def author
+    self.user
+  end
+
+  def category
+    self.article.category
+  end
 end

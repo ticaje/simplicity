@@ -1,0 +1,14 @@
+<div id="sidebar-container" class="columns large-3">
+  <div id="sidebar">
+    <div id="categories">
+      <h5>Categories</h5>
+      <div class="category-list">
+        <ul class="no-bullet">
+          <% @categories.each do |category| %>
+            <li><%= link_to category.name, category_path(category) %><span>(<%= category.total_articles %>)</span></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

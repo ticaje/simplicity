@@ -1,10 +1,37 @@
-<h1>Translations</h1>
-
-<div id="translations">
-  <% @translations.each do |translation| %>
-    <h2><%= link_to translation.article.name, translation %></h2>
-    <h3>Author: <%= translation.article.author.username %></h3>
-    <h3>Translator: <%= translation.user.email %></h3>
-    <%= simple_format translation.content %>
-  <% end %>
+<div class="super-container large-9 columns index">
+  <%= render "translations/header" %>
+  <div id="translations">
+    <% @translations.each do |translation| %>
+      <div class="row translation-row">
+        <div class="columns large-2 translation-header">
+          <%= link_to(translation) do %>
+            <div class="rating-summary row">
+              <div class="rs-reputation columns large-10">
+                <div class="number"><%= translation.reputation %></div>
+                <div class="text">Reputation </div>
+              </div>
+              <div class="columns large-1 large-offset-1">
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="translation columns large-10">
+          <div id="translation-<%= translation.id %>">
+            <%= link_to translation.article.name, translation, :class => "translation-name" %>
+            <div class="row">
+              <div class="columns large-6">
+                <h5 class="article">Article: <%= translation.article.name %></h5>
+              </div>
+              <div class="columns large-4">
+                <h5 class="category">Category: <%= translation.article.category.name %></h5>
+              </div>
+              <div class="columns large-2">
+                <h5 class="author">By: <%= translation.user.username %></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

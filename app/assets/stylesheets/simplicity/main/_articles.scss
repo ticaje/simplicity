@@ -1,0 +1,111 @@
+.articles, .users, .translations{
+  .main-content{
+    padding: 20px 0;
+    .header{
+      h2 {
+        font-size: 30px;
+        color: $basic-blue;
+        a{ color: $basic-blue; }
+      }
+      padding: 20px 0 0 0;
+      .tab-container{
+        /* Example Styles for Demo */
+        .etabs { margin: 0; padding: 0; }
+        .tab { display: inline-block; zoom:1; *display:inline; background: $basic-color; border: solid 1px #999; border-bottom: none; }
+        .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; border: 1px solid transparent; border-bottom: solid 1px #999; margin: 0 0 -1px -1px }
+        .tab:hover { background: #fff; padding-top: 2px; position: relative; top: 1px; border-bottom-color: #fff; }
+        .tab.active { background: #fff; padding-top: 2px; position: relative; top: 1px; border-bottom-color: #fff; }
+        .tab.active a { font-weight: bold; border-bottom-color: #eee; }
+        .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; }
+        .panel-container { margin-bottom: 10px; }
+
+      }
+      .search-article{ padding-top: 13px; }
+      .add-article{ padding-top: 10px; }
+    }
+    #articles{
+      background: #fff;
+      border: 1px solid #999;
+      border-top: none;
+      top: -3px;
+      position: relative;
+      padding: 0 20px 20px;
+      .article-row{
+        border-bottom: 1px solid #ccc;
+        padding: 20px 0 0 10px;
+        .article-header{
+          padding: 10px;
+          .rating-summary{
+            .columns{
+              margin-right: 15px;
+              @include funny-content-border(1,1,1, #443939);
+            }
+            .text, .number{
+              font-size: 12px;
+              text-align: center;
+              color: #695050;
+            }
+            .text{ font-size: 10px; }
+            .rs-request{ background: #ccc; padding: 5px 0; }
+            .rs-translation{ background: #ddd; padding: 5px 0; }
+            .rs-reputation{ background: #eee; padding: 5px 0; }
+            .active{ font-weight: bold; }
+          }
+        }
+        .article{
+          padding: 10px 0 10px 0px;
+          .article-name{
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .author{
+            font-size: 12px;
+            color: $author-color;
+          }
+          .category{
+            font-size: 12px;
+            color: $category-color;
+          }
+        }
+      }
+    }
+    .index{
+      .header{
+        border-bottom: 1px solid #999;
+      }
+    }
+    .show{
+      h2.title{ border-bottom: 1px solid #ccc; margin-bottom: 20px; }
+      .article-content, .translation-content{
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        .votecell{
+          color: #4A565A;
+          background: #c4dae9;
+          padding: 20px;
+          text-align: center;
+          .atom{ padding: 2px 0 }
+        }
+        h5{
+          color: #4A565A;
+          background: #c4dae9;
+          padding: 10px;
+          font-size: 14px;
+        }
+        .edition{
+          li{
+          }
+        }
+        .avatar{
+          h5{
+          }
+        }
+        .category{ padding: 10px; text-align: center; }
+      }
+    }
+    .bottom-box{
+      padding: 10px 0;
+    }
+  }
+}

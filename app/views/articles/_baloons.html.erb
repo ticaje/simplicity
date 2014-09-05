@@ -1,0 +1,20 @@
+<div class="columns large-4 article-header">
+  <%= link_to(article) do %>
+    <div class="rating-summary row">
+      <div class="rs-request columns large-3 <%= 'active' if @tab == 'top_requested' %>">
+        <div class="number"><%= article.total_requests %></div>
+        <div class="text">Requests </div>
+      </div>
+      <div class="rs-translation columns large-3 <%= 'active' if @tab == 'top_translated' %>">
+        <div class="number"><%= article.total_translations %></div>
+        <div class="text">Translations </div>
+      </div>
+      <div class="rs-reputation columns large-3 <%= 'active' if @tab == 'by_votes' %>">
+        <div class="number"><%= article.reputation %></div>
+        <div class="text">Reputation </div>
+      </div>
+      <div class="columns large-1 large-offset-1">
+      </div>
+    </div>
+  <% end %>
+</div>

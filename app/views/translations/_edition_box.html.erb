@@ -1,0 +1,14 @@
+<div class="edition">
+  <ul class="inline-list">
+  <% if permitted_to? :edit, translation %>
+    <li>
+      <%= link_to "Edit", edit_translation_path(translation), :class => "button small" %>
+    </li>
+  <% end %>
+  <% if permitted_to? :translate, translation %>
+    <li>
+      <%= link_to "New Translation", translate_path(translation.article), :class => "button small" %>
+    </li>
+  <% end %>
+  </ul>
+</div>

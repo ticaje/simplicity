@@ -3,13 +3,17 @@ Simplicity::Application.routes.draw do
   match 'account/ask/:article' => 'users#ask', :as => :ask
   devise_for :users, :path => :account, :path_names => { :sign_up => "register", :sign_in => "login", :sign_out => "logout" }, :controllers => { :registrations => "registrations" }
 
+  get 'articles/categories/:category' => 'articles#category', as: :category
   resources :articles do
     member { post :vote }
   end
+
   resources :categories
 
   match 'account/translate/:article' => 'users#translate', :as => :translate
-  resources :translations
+  resources :translations do
+    member { post :vote }
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

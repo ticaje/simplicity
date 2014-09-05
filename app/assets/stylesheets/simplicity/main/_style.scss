@@ -1,0 +1,70 @@
+/* General styles */
+body.articles, body.users, body.translations{
+  .super-container{
+    @include funny-content-border();
+    background: $white-color;
+  }
+}
+body{
+  #sidebar-container{
+    padding: 0 20px;
+    #sidebar{
+      @include funny-content-border();
+      background: $white-color;
+      padding: 40px 20px;
+      text-align: center;
+      #categories{
+        h5 {
+          color: #008cba;
+          margin:0; font-weight:bold;
+        }
+        .category-list{
+          padding-top: 15px;
+          ul{
+            li{
+              color: #008cba;
+              span { padding-left: 2px; }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* Form errors box */
+  .field_with_errors{
+    .message{
+      color: red;
+      position: relative;
+      top: -10px;
+    }
+  }
+
+  /* Flash messages */
+  #flash-container{
+    padding-top: 20px;
+    a{ color: #5D871B; float: right; }
+    #flash_notice, #flash_error, #flash_alert {
+      padding: 5px 8px;
+      text-align: center;
+    }
+
+    #flash_notice {
+      background-color: #FAF0E6;
+      border: solid 1px #5D871B;
+      color: #5D871B;
+    }
+
+    #flash_error, #flash_alert {
+      background-color: #FAF0E6;
+      border: solid 1px #5D871B;
+      color: #5D871B;
+    }
+  }
+}
+
+
+
+@import "simplicity/main/user";
+@import "simplicity/main/articles";
+@import "simplicity/main/translations";

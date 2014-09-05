@@ -1,0 +1,14 @@
+<div id="flash-container">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, :id => "flash_#{name}", :class => "columns large-6 large-centered" do %>
+      <div class="row">
+        <div class="columns large-11" >
+          <%= msg %>
+        </div>
+        <div class="columns large-1" >
+          <%= link_to "x", "#", :class => "closure" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
-<%= form_for(@translation) do |f| %>
+<%= form_for @translation, :validate => true do |f| %>
   <% if @translation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@translation.errors.count, "error") %> prohibited this translation from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :original_content %><br />
-    <%= f.label @translation.content %><br />
+    <%= simple_format @translation.article.name %>
   </div>
   <div class="field">
     <%= f.label :translation %><br />
@@ -22,6 +22,6 @@
   <div class="field">
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update translation", :class => "button small" %>
   </div>
 <% end %>

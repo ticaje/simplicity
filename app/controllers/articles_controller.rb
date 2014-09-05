@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
+  before_filter :authenticate_user!, only:[:new]
+  before_filter :find_tabs
+  filter_access_to [:category]
   filter_resource_access
+  layout "article"
 
   # GET /articles
   # GET /articles.json
@@ -9,6 +13,17 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.top_requested
     end
+  end
+
+  # GET /articles
+  # GET /articles.json
+  def category
+    @articles = Article.with_category(params[:category], params[:search] || "top_requested")
+    respond_with(:articles, template: "articles/index")
+  end
+
+  def show
+    respond_with_decorated(:article)
   end
 
   # POST /articles
@@ -46,6 +61,17 @@ class ArticlesController < ApplicationController
     value = params[:type] == "up" ? 1 : -1
     @article = Article.find(params[:id])
     @article.add_evaluation(:points, value, current_user)
-    redirect_to :back, notice: "Thank you for voting!"
+    redirect_to article_url(@article), notice: "Thank you for voting!"
   end
+
+  private
+
+  def find_tabs
+    if (search = params[:search]) && (Article.respond_to?(search.to_sym))
+      @tab = search
+    else
+      @tab = "top_requested"
+    end
+  end
+
 end

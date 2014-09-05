@@ -4,7 +4,7 @@ authorization do
   end
 
   role :guest do
-    has_permission_on :articles, :to => [:index, :show]
+    has_permission_on :articles, :to => [:new, :index, :show, :category]
     has_permission_on :translations, :to => [:index, :show]
     has_permission_on :comments, :to => [:new, :create]
     has_permission_on :comments, :to => [:edit, :update] do
@@ -14,11 +14,11 @@ authorization do
 
   role :author do
     includes :guest
-    has_permission_on :articles, :to => [:new, :create, :translate, :vote, :ask]
+    has_permission_on :articles, :to => [:create, :translate, :vote, :ask]
     has_permission_on :articles, :to => [:edit, :update, :destroy] do
       if_attribute :author => is { user }
     end
-    has_permission_on :translations, :to => [:new, :create]
+    has_permission_on :translations, :to => [:new, :create, :vote]
     has_permission_on :translations, :to => [:edit, :update, :destroy] do
       if_attribute :user => is { user }
     end
